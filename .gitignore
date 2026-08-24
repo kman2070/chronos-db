@@ -2,3 +2,7 @@ build/
 *.db
 *.o
 *.a
+build/
+deb_build/
+*.o
+*.db
