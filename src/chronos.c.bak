@@ -241,3 +241,18 @@ int chronos_log_vortx_event(ChronosContext *ctx, uint32_t severity, const char *
     while (vm_msg && vm_msg[len] != '\0' && len < 80) len++;
     return chronos_append(ctx, vortx_module_id, severity, (const uint8_t *)vm_msg, len);
 }
+#include <stdbool.h>
+
+static bool is_active = false;
+
+bool try_become_active(void) {
+    if (!is_active) {
+        is_active = true;
+        return true;
+    }
+    return false;
+}
+
+void release_active(void) {
+    is_active = false;
+}
